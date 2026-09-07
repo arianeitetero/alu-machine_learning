@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""Return the shape of a NumPy array."""
+'''
+    Function def np_shape(matrix):
+    Calculates the shape of a numpy.ndarray
+'''
 
 
 def np_shape(matrix):
-    """Return the shape of matrix as a tuple."""
-    return matrix.shape
+    '''
+        Calculates the shape of a numpy.ndarray
+    '''
+    return tuple(matrix.shape)

@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Add two one-dimensional arrays element-wise."""
+'''
+    A function that adds two arrays element-wise
+'''
 
 
 def add_arrays(arr1, arr2):
-    """Return the element-wise sum, or None for different shapes."""
-    if len(arr1) != len(arr2):
+    '''
+        The function that two arrays element-wise
+    '''
+    if len(arr1) == len(arr2):
+        return [arr1[i] + arr2[i] for i in range(len(arr1))]
+    else:
         return None
-    return [left + right for left, right in zip(arr1, arr2)]

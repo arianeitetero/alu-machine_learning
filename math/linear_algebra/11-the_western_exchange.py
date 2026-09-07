@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""Transpose NumPy arrays."""
-import numpy as np
+'''
+    Function def np_transpose(matrix):
+    transposes matrix:
+'''
 
 
 def np_transpose(matrix):
-    """Return a new NumPy array containing the transpose of matrix."""
-    return np.array(matrix).transpose().copy()
+    '''
+        Function def np_transpose(matrix)
+        transposes matrix:
+    '''
+    return matrix.transpose()

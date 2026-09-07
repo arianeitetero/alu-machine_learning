@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
-"""Add two 2D matrices element-wise."""
+'''
+    A function def add_matrices2D(mat1, mat2):
+    that adds two matrices element-wise
+'''
 
 
 def add_matrices2D(mat1, mat2):
-    """Return the element-wise sum, or None for different shapes."""
-    if len(mat1) != len(mat2):
+    '''
+        The function def add_matrices2D(mat1, mat2):
+        adds two matrices element-wise
+    '''
+    if len(mat1) == len(mat2) and len(mat1[0]) == len(mat2[0]):
+        return [
+            [
+                mat1[i][j] + mat2[i][j]
+                for j in range(len(mat1[0]))
+            ]
+            for i in range(len(mat1))
+        ]
+    else:
         return None
-    if mat1 and len(mat1[0]) != len(mat2[0]):
-        return None
-    return [[left + right for left, right in zip(row1, row2)]
-            for row1, row2 in zip(mat1, mat2)]
