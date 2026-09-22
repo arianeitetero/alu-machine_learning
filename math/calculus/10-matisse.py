@@ -9,10 +9,19 @@ def poly_derivative(poly):
     '''
     Calculates the derivative of a polynomial.
     '''
-    if not isinstance(poly, list):
+    if not isinstance(poly, list) or len(poly) == 0:
         return None
 
-    if len(poly) <= 1:
+    for coefficient in poly:
+        if not isinstance(coefficient, (int, float)):
+            return None
+
+    if len(poly) == 1:
         return [0]
 
-    return [poly[i] * i for i in range(1, len(poly))]
+    derivative = [poly[i] * i for i in range(1, len(poly))]
+
+    if all(coefficient == 0 for coefficient in derivative):
+        return [0]
+
+    return derivative
