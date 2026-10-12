@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+"""Module implementing Bayesian posterior calculations."""
+
+import math
+
+import numpy as np
+
+
+def posterior(x, n, P, Pr):
+    """Return the posterior probability distribution given priors."""
+    if not isinstance(n, (int, np.integer)) or isinstance(n, bool) or n <= 0:
+        raise ValueError("n must be a positive integer")
+    if not isinstance(x, (int, np.integer)) or isinstance(x, bool) or x < 0:
+        raise ValueError("x must be an integer greater than or equal to 0")
+    if x > n:
+        raise ValueError("x cannot be greater than n")
+    if not isinstance(P, np.ndarray) or P.ndim != 1:
+        raise TypeError("P must be a 1D numpy.ndarray")
+    if not isinstance(Pr, np.ndarray) or Pr.shape != P.shape:
+        raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
+    if np.any((P < 0) | (P > 1)):
+        raise ValueError("All values in P must be in the range [0, 1]")
+    if np.any((Pr < 0) | (Pr > 1)):
+        raise ValueError("All values in Pr must be in the range [0, 1]")
+    if not np.isclose(np.sum(Pr), 1.0):
+        raise ValueError("Pr must sum to 1")
+
+    coefficient = math.factorial(n)
+    coefficient /= math.factorial(n - x) * math.factorial(x)
+    likelihood = coefficient * (P ** x) * ((1 - P) ** (n - x))
+    intersection = likelihood * Pr
+    marginal = np.sum(intersection)
+    if np.isclose(marginal, 0.0):
+        raise ValueError("marginal probability must be non-zero")
+    return intersection / marginal
